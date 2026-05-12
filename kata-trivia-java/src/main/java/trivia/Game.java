@@ -10,7 +10,7 @@ public class Game implements IGame {
    private static final int WINNING_COINS = 6;
    private static final int QUESTIONS_PER_CATEGORY = 50;
 
-   ArrayList<String> players = new ArrayList<>();
+   ArrayList<Player> players = new ArrayList<>();
    int[] places = new int[MAX_PLAYERS];
    int[] purses = new int[MAX_PLAYERS];
    boolean[] inPenaltyBox = new boolean[MAX_PLAYERS];
@@ -44,7 +44,7 @@ public class Game implements IGame {
       places[howManyPlayers()] = 1;
       purses[howManyPlayers()] = 0;
       inPenaltyBox[howManyPlayers()] = false;
-      players.add(playerName);
+      players.add(new Player(playerName));
 
       System.out.println(playerName + " was added");
       System.out.println("They are player number " + players.size());
@@ -90,7 +90,7 @@ public class Game implements IGame {
    }
 
    private String currentPlayerName() {
-      return players.get(currentPlayer);
+      return players.get(currentPlayer).name;
    }
 
    private void askQuestion() {
