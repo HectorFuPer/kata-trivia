@@ -23,6 +23,10 @@ class Player {
       inPenaltyBox = true;
    }
 
+   void releaseFromPenaltyBox() {
+      inPenaltyBox = false;
+   }
+
    boolean hasWon(int winningCoins) {
       return coins == winningCoins;
    }

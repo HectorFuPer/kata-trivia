@@ -45,6 +45,7 @@ public class Game implements IGame {
    private void handlePenaltyBoxRoll(int roll) {
       if (roll % 2 != 0) {
          isGettingOutOfPenaltyBox = true;
+         currentPlayer().releaseFromPenaltyBox();
          System.out.println(currentPlayerName() + " is getting out of the penalty box");
          takeTurn(roll);
       } else {
@@ -103,7 +104,7 @@ public class Game implements IGame {
 
       } else {
 
-         System.out.println("Answer was corrent!!!!");
+         System.out.println("Answer was correct!!!!");
          currentPlayer().addCoin();
          System.out.println(currentPlayerName()
                             + " now has "
