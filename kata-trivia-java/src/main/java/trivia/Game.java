@@ -1,7 +1,6 @@
 package trivia;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 // REFACTOR ME
 public class Game implements IGame {
@@ -11,27 +10,10 @@ public class Game implements IGame {
    private static final int QUESTIONS_PER_CATEGORY = 50;
 
    ArrayList<Player> players = new ArrayList<>();
-
-   LinkedList<String> popQuestions = new LinkedList<>();
-   LinkedList<String> scienceQuestions = new LinkedList<>();
-   LinkedList<String> sportsQuestions = new LinkedList<>();
-   LinkedList<String> rockQuestions = new LinkedList<>();
+   QuestionDeck questions = new QuestionDeck(QUESTIONS_PER_CATEGORY);
 
    int currentPlayer = 0;
    boolean isGettingOutOfPenaltyBox;
-
-   public Game() {
-      for (int i = 0; i < QUESTIONS_PER_CATEGORY; i++) {
-         popQuestions.addLast("Pop Question " + i);
-         scienceQuestions.addLast(("Science Question " + i));
-         sportsQuestions.addLast(("Sports Question " + i));
-         rockQuestions.addLast(createRockQuestion(i));
-      }
-   }
-
-   public String createRockQuestion(int index) {
-      return "Rock Question " + index;
-   }
 
    public boolean isPlayable() {
       return (howManyPlayers() >= 2);
@@ -91,14 +73,7 @@ public class Game implements IGame {
    }
 
    private void askQuestion() {
-      if (currentCategory() == "Pop")
-         System.out.println(popQuestions.removeFirst());
-      if (currentCategory() == "Science")
-         System.out.println(scienceQuestions.removeFirst());
-      if (currentCategory() == "Sports")
-         System.out.println(sportsQuestions.removeFirst());
-      if (currentCategory() == "Rock")
-         System.out.println(rockQuestions.removeFirst());
+      System.out.println(questions.nextQuestion(currentCategory()));
    }
 
 
