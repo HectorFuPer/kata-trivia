@@ -1,6 +1,7 @@
 package trivia;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // REFACTOR ME
 public class Game implements IGame {
@@ -9,11 +10,11 @@ public class Game implements IGame {
    private static final int WINNING_COINS = 6;
    private static final int QUESTIONS_PER_CATEGORY = 50;
 
-   ArrayList<Player> players = new ArrayList<>();
-   QuestionDeck questions = new QuestionDeck(QUESTIONS_PER_CATEGORY);
+   private final List<Player> players = new ArrayList<>();
+   private final QuestionDeck questions = new QuestionDeck(QUESTIONS_PER_CATEGORY);
 
-   int currentPlayer = 0;
-   boolean isGettingOutOfPenaltyBox;
+   private int currentPlayer = 0;
+   private boolean isGettingOutOfPenaltyBox;
 
    public boolean isPlayable() {
       return (howManyPlayers() >= 2);
