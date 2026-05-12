@@ -10,15 +10,15 @@ public class Game implements IGame {
    private static final int WINNING_COINS = 6;
    private static final int QUESTIONS_PER_CATEGORY = 50;
 
-   ArrayList players = new ArrayList();
+   ArrayList<String> players = new ArrayList<>();
    int[] places = new int[MAX_PLAYERS];
    int[] purses = new int[MAX_PLAYERS];
    boolean[] inPenaltyBox = new boolean[MAX_PLAYERS];
 
-   LinkedList popQuestions = new LinkedList();
-   LinkedList scienceQuestions = new LinkedList();
-   LinkedList sportsQuestions = new LinkedList();
-   LinkedList rockQuestions = new LinkedList();
+   LinkedList<String> popQuestions = new LinkedList<>();
+   LinkedList<String> scienceQuestions = new LinkedList<>();
+   LinkedList<String> sportsQuestions = new LinkedList<>();
+   LinkedList<String> rockQuestions = new LinkedList<>();
 
    int currentPlayer = 0;
    boolean isGettingOutOfPenaltyBox;
@@ -89,7 +89,7 @@ public class Game implements IGame {
       if (places[currentPlayer] > BOARD_SIZE) places[currentPlayer] = places[currentPlayer] - BOARD_SIZE;
    }
 
-   private Object currentPlayerName() {
+   private String currentPlayerName() {
       return players.get(currentPlayer);
    }
 
