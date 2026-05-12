@@ -20,11 +20,21 @@ public class Game implements IGame {
    }
 
    public boolean add(String playerName) {
+      validateNewPlayer(playerName);
       players.add(new Player(playerName));
 
       System.out.println(playerName + " was added");
       System.out.println("They are player number " + players.size());
       return true;
+   }
+
+   private void validateNewPlayer(String playerName) {
+      if (players.size() == MAX_PLAYERS) {
+         throw new IllegalStateException("The game cannot have more than " + MAX_PLAYERS + " players");
+      }
+      if (players.stream().anyMatch(player -> player.hasName(playerName))) {
+         throw new IllegalArgumentException("Player names must be unique");
+      }
    }
 
    public int howManyPlayers() {

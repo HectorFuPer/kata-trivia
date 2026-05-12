@@ -10,6 +10,10 @@ class Player {
       this.name = name;
    }
 
+   boolean hasName(String otherName) {
+      return name.equals(otherName);
+   }
+
    void move(int roll, int boardSize) {
       position = position + roll;
       if (position > boardSize) position = position - boardSize;
