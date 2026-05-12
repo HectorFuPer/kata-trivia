@@ -5,10 +5,15 @@ import java.util.LinkedList;
 
 // REFACTOR ME
 public class Game implements IGame {
+   private static final int MAX_PLAYERS = 6;
+   private static final int BOARD_SIZE = 12;
+   private static final int WINNING_COINS = 6;
+   private static final int QUESTIONS_PER_CATEGORY = 50;
+
    ArrayList players = new ArrayList();
-   int[] places = new int[6];
-   int[] purses = new int[6];
-   boolean[] inPenaltyBox = new boolean[6];
+   int[] places = new int[MAX_PLAYERS];
+   int[] purses = new int[MAX_PLAYERS];
+   boolean[] inPenaltyBox = new boolean[MAX_PLAYERS];
 
    LinkedList popQuestions = new LinkedList();
    LinkedList scienceQuestions = new LinkedList();
@@ -19,7 +24,7 @@ public class Game implements IGame {
    boolean isGettingOutOfPenaltyBox;
 
    public Game() {
-      for (int i = 0; i < 50; i++) {
+      for (int i = 0; i < QUESTIONS_PER_CATEGORY; i++) {
          popQuestions.addLast("Pop Question " + i);
          scienceQuestions.addLast(("Science Question " + i));
          sportsQuestions.addLast(("Sports Question " + i));
@@ -60,7 +65,7 @@ public class Game implements IGame {
 
             System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
             places[currentPlayer] = places[currentPlayer] + roll;
-            if (places[currentPlayer] > 12) places[currentPlayer] = places[currentPlayer] - 12;
+            if (places[currentPlayer] > BOARD_SIZE) places[currentPlayer] = places[currentPlayer] - BOARD_SIZE;
 
             System.out.println(players.get(currentPlayer)
                                + "'s new location is "
@@ -75,7 +80,7 @@ public class Game implements IGame {
       } else {
 
          places[currentPlayer] = places[currentPlayer] + roll;
-         if (places[currentPlayer] > 12) places[currentPlayer] = places[currentPlayer] - 12;
+         if (places[currentPlayer] > BOARD_SIZE) places[currentPlayer] = places[currentPlayer] - BOARD_SIZE;
 
          System.out.println(players.get(currentPlayer)
                             + "'s new location is "
@@ -162,6 +167,6 @@ public class Game implements IGame {
 
 
    private boolean didPlayerWin() {
-      return !(purses[currentPlayer] == 6);
+      return !(purses[currentPlayer] == WINNING_COINS);
    }
 }
